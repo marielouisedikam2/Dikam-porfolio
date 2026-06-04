@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dikam Marie Louise | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #04060f;
+  --surface: #0b0f1e;
+  --surface2: #111628;
+  --accent: #a78bfa;
+  --accent2: #38bdf8;
+  --accent3: #f472b6;
+  --text: #e8e8f0;
+  --muted: #6b7280;
+  --border: rgba(167,139,250,0.15);
+  --glow: rgba(167,139,250,0.08);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CURSOR */
+.cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+  mix-blend-mode: screen;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(167,139,250,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.18s ease;
+}
+
+/* NOISE OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.6;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 7%;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+  background: rgba(4,6,15,0.7);
+  backdrop-filter: blur(20px);
+}
+
+.nav-logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.nav-logo span {
+  color: var(--text);
+  opacity: 0.5;
+  font-style: italic;
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  cursor: none;
+}
+
+.nav-links a:hover, .nav-links a.active-link {
+  color: var(--accent);
+  background: var(--glow);
+}
+
+/* SECTIONS */
+section {
+  display: none;
+  min-height: 100vh;
+  padding: 120px 7% 80px;
+  animation: pageIn 0.5s ease forwards;
+}
+
+section.active { display: flex; flex-direction: column; justify-content: center; }
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── HOME ── */
+#home {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+  max-width: 1100px;
+}
+
+.home-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--accent2);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home-tag::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent2);
+}
+
+.home-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+}
+
+.home-title .name {
+  color: var(--accent);
+  display: block;
+  font-style: italic;
+}
+
+.home-desc {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 420px;
+  margin-bottom: 36px;
+}
+
+.home-cta {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.btn-primary {
+  padding: 13px 28px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  cursor: none;
+  transition: all 0.2s;
+}
+
+.btn-primary:hover {
+  background: #c4b5fd;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(167,139,250,0.3);
+}
+
+.btn-ghost {
+  padding: 13px 28px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+  border-radius: 8px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  cursor: none;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* HOME RIGHT — abstract shape */
+.home-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.orb-container {
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+.orb-1 {
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(167,139,250,0.35) 0%, transparent 70%);
+  top: 0; left: 0;
+  animation: float1 6s ease-in-out infinite;
+}
+
+.orb-2 {
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(56,189,248,0.25) 0%, transparent 70%);
+  bottom: 0; right: 0;
+  animation: float2 7s ease-in-out infinite;
+}
+
+.orb-3 {
+  width: 120px; height: 120px;
+  background: radial-gradient(circle, rgba(244,114,182,0.2) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  animation: float3 5s ease-in-out infinite;
+}
+
+.initials-badge {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 110px; height: 110px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.2rem;
+  color: var(--accent);
+  letter-spacing: -0.04em;
+  box-shadow: 0 0 40px rgba(167,139,250,0.15);
+  backdrop-filter: blur(10px);
+}
+
+@keyframes float1 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(10px,-15px);} }
+@keyframes float2 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(-12px,10px);} }
+@keyframes float3 { 0%,100%{transform:translate(-50%,-50%);} 50%{transform:translate(-50%,-65%);} }
+
+/* Home stats */
+.home-stats {
+  display: flex;
+  gap: 36px;
+  margin-top: 48px;
+}
+
+.stat {
+  border-left: 2px solid var(--accent);
+  padding-left: 14px;
+}
+
+.stat-num {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ── ABOUT ── */
+#about { justify-content: flex-start; }
+
+.section-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent2);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.section-eyebrow::before {
+  content: '//';
+  opacity: 0.5;
+}
+
+.section-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  margin-bottom: 50px;
+  line-height: 1.1;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 900px;
+}
+
+.about-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+.about-card-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.about-card p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(232,232,240,0.75);
+}
+
+.about-card-wide {
+  grid-column: 1 / -1;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 24px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 20px;
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline-item:last-child::before { display: none; }
+
+.tl-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 2px solid var(--accent);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.tl-year {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent2);
+  margin-bottom: 4px;
+}
+
+.tl-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  margin-bottom: 4px;
+}
+
+.tl-desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── SKILLS ── */
+.skills-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+  max-width: 860px;
+}
+
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, var(--glow), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.skill-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(167,139,250,0.12);
+}
+
+.skill-card:hover::after { opacity: 1; }
+
+.skill-icon {
+  font-size: 1.4rem;
+}
+
+.skill-name {
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+}
+
+.skill-cat {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.66rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.skill-bar-wrap {
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-bar {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  animation: barIn 1.2s ease forwards;
+  transform-origin: left;
+}
+
+@keyframes barIn {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* ── PROJECTS ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(167,139,250,0.1);
+}
+
+.project-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.14em;
+}
+
+.project-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+.project-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(167,139,250,0.1);
+  border: 1px solid rgba(167,139,250,0.2);
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-arrow {
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--accent2);
+  opacity: 0;
+  transition: opacity 0.2s;
+  letter-spacing: 0.06em;
+}
+
+.project-card:hover .project-arrow { opacity: 1; }
+
+/* ── CONTACT ── */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  max-width: 900px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.contact-line {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contact-line-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--accent);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.contact-line-value {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.contact-line-value a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-line-value a:hover { color: var(--accent); }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.form-input, .form-textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.88rem;
+  transition: border-color 0.2s;
+  outline: none;
+  width: 100%;
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(167,139,250,0.08);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Footer line */
+.footer-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 7%;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  border-top: 1px solid var(--border);
+  background: rgba(4,6,15,0.6);
+  backdrop-filter: blur(10px);
+  z-index: 50;
+}
+
+.footer-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  margin-right: 8px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; } 50% { opacity: 0.3; }
+}
+
+/* Grid lines background */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(167,139,250,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(167,139,250,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+section > * { position: relative; z-index: 1; }
+</style>
+</head>
+
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="bg-grid"></div>
+
+<nav>
+  <div class="nav-logo">DML <span>/ portfolio</span></div>
+  <div class="nav-links">
+    <a onclick="show('home')" class="active-link" id="nav-home">Accueil</a>
+    <a onclick="show('about')" id="nav-about">À propos</a>
+    <a onclick="show('skills')" id="nav-skills">Compétences</a>
+    <a onclick="show('projects')" id="nav-projects">Projets</a>
+    <a onclick="show('contact')" id="nav-contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="active">
+  <div class="home-grid">
+    <div>
+      <div class="home-tag">Disponible pour des missions</div>
+      <h1 class="home-title">
+        Développeuse<br>
+        <span class="name">Marie Louise Dikam</span>
+      </h1>
+      <p class="home-desc">
+        Étudiante en DUT Génie Informatique à l'IUT de Douala.
+        Je conçois des interfaces web propres, modernes et centrées utilisateur.
+      </p>
+      <div class="home-cta">
+        <button class="btn-primary" onclick="show('projects')">Voir mes projets</button>
+        <button class="btn-ghost" onclick="show('contact')">Me contacter</button>
+      </div>
+      <div class="home-stats">
+        <div class="stat">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Projets</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">8</div>
+          <div class="stat-label">Compétences</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">IUT</div>
+          <div class="stat-label">Douala</div>
+        </div>
+      </div>
+    </div>
+    <div class="home-visual">
+      <div class="orb-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="initials-badge">DML</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-eyebrow">Qui suis-je</div>
+  <h2 class="section-title">À propos de moi</h2>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-card-label">Profil</div>
+      <p>Étudiante passionnée en Génie Informatique, je construis des interfaces web modernes alliant clarté visuelle et code propre. J'aime transformer des idées en expériences numériques mémorables.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-label">Formation</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">2024 — présent</div>
+            <div class="tl-title">DUT Génie Informatique</div>
+            <div class="tl-desc">IUT de Douala — Promotion 2024</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-dot"></div>
+          <div>
+            <div class="tl-year">Antérieur</div>
+            <div class="tl-title">Baccalauréat</div>
+            <div class="tl-desc">Sciences — mention obtenue</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-card about-card-wide">
+      <div class="about-card-label">Objectifs</div>
+      <p>Approfondir mes compétences en développement fullstack, collaborer sur des projets concrets, et contribuer à des solutions digitales utiles pour mon environnement. Ouverte aux stages et opportunités de collaboration.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-eyebrow">Savoir-faire</div>
+  <h2 class="section-title">Compétences</h2>
+  <div class="skills-layout">
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div>
+        <div class="skill-name">HTML</div>
+        <div class="skill-cat">Markup</div>
+      </div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🎨</div>
+      <div>
+        <div class="skill-name">CSS</div>
+        <div class="skill-cat">Style</div>
+      </div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⚡</div>
+      <div>
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-cat">Scripting</div>
+      </div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🐙</div>
+      <div>
+        <div class="skill-name">GitHub</div>
+        <div class="skill-cat">Versionning</div>
+      </div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗄️</div>
+      <div>
+        <div class="skill-name">MySQL</div>
+        <div class="skill-cat">Base de données</div>
+      </div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">✏️</div>
+      <div>
+        <div class="skill-name">Figma</div>
+        <div class="skill-cat">Design</div>
+      </div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🗂️</div>
+      <div>
+        <div class="skill-name">Merise</div>
+        <div class="skill-cat">Modélisation</div>
+      </div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🖌️</div>
+      <div>
+        <div class="skill-name">UI/UX</div>
+        <div class="skill-cat">Design</div>
+      </div>
+      <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-eyebrow">Réalisations</div>
+  <h2 class="section-title">Projets</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-title">Portfolio personnel moderne</div>
+      <div class="project-desc">Conception et développement d'un portfolio one-page responsive avec navigation dynamique et design sombre.</div>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JS</span>
+      </div>
+      <div class="project-arrow">Voir le projet →</div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-title">Calculatrice JavaScript</div>
+      <div class="project-desc">Application de calcul fonctionnelle avec interface épurée, gestion des opérations et historique de calcul.</div>
+      <div class="project-tags">
+        <span class="tag">JavaScript</span>
+        <span class="tag">DOM</span>
+        <span class="tag">CSS</span>
+      </div>
+      <div class="project-arrow">Voir le projet →</div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-title">Plateforme tickets de concert</div>
+      <div class="project-desc">Système de réservation en ligne pour événements musicaux avec gestion des places et interface utilisateur intuitive.</div>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">MySQL</span>
+      </div>
+      <div class="project-arrow">Voir le projet →</div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <div class="project-title">Modélisation MCD / MLD</div>
+      <div class="project-desc">Conception de modèles conceptuels et logiques de données avec la méthode Merise pour des bases relationnelles.</div>
+      <div class="project-tags">
+        <span class="tag">Merise</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">UML</span>
+      </div>
+      <div class="project-arrow">Voir le projet →</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">Restons en contact</div>
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-layout">
+    <div class="contact-info">
+      <div class="contact-line">
+        <div class="contact-line-label">Email</div>
+        <div class="contact-line-value">
+          <a href="mailto:marielouisedikam2@gmail.com">marielouisedikam2@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-line">
+        <div class="contact-line-label">Localisation</div>
+        <div class="contact-line-value">Douala, Cameroun</div>
+      </div>
+      <div class="contact-line">
+        <div class="contact-line-label">Disponibilité</div>
+        <div class="contact-line-value">Open aux stages & collaborations</div>
+      </div>
+      <div class="contact-line">
+        <div class="contact-line-label">Réponse sous</div>
+        <div class="contact-line-value">24 à 48h</div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-group">
+        <label class="form-label">Nom complet</label>
+        <input class="form-input" type="text" placeholder="Votre nom">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Adresse email</label>
+        <input class="form-input" type="email" placeholder="votre@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Décrivez votre projet ou votre demande…"></textarea>
+      </div>
+      <button class="btn-primary" style="align-self:flex-start">Envoyer le message</button>
+    </div>
+  </div>
+</section>
+
+<div class="footer-bar">
+  <span><span class="footer-dot"></span>Portfolio — Dikam Marie Louise</span>
+  <span>© 2025 — DUT GI · IUT Douala</span>
+</div>
+
+<script>
+// Navigation
+const navIds = ['home','about','skills','projects','contact'];
+
+function show(id) {
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  navIds.forEach(n => {
+    const el = document.getElementById('nav-' + n);
+    if (el) el.classList.toggle('active-link', n === id);
+  });
+}
+
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+});
+
+function animRing() {
+  rx += (mx - rx) * 0.14;
+  ry += (my - ry) * 0.14;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+document.querySelectorAll('a, button, .project-card, .skill-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+    ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
+    ring.style.opacity = '0.5';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+    ring.style.transform = 'translate(-50%,-50%) scale(1)';
+    ring.style.opacity = '1';
+  });
+});
+</script>
+
+</body>
+</html>
